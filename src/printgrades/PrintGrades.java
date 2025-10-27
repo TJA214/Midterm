@@ -24,11 +24,15 @@ public class PrintGrades {
     public static void main(String[] args) 
       {
     Scanner in =new Scanner(System.in);
-    System.out.println("Enter the student grade code (a+,a,b+,c) in string");
-    String code = in.next();
-    Grades t= new Grades();
-    t.gradeDetail(code); 
-    }  // TODO code application logic here
-    
-   
+    System.out.println("Enter the student grade code (A_PLUS_) in string");
+    String input = in.next().toUpperCase();
+
+        Grades t = new Grades();
+        try {
+            Grades.Grade grade = Grades.Grade.valueOf(input);
+            t.gradeDetail(grade);
+        } catch (IllegalArgumentException e) {
+            t.gradeDetail(Grades.Grade.INVALID);
+        }
+      } 
 }
